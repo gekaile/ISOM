@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="直播历史回放,建议使用电信联通宽带或者是手机流量进行浏览" />
+    <meta property="og:description" content="直播历史回放,建议使用电信联通宽带或者是手机流量进行浏览。" />
+    <title>ISOM</title>
+
+    <!--图标样式和布局-->
+    <link href="//lib.baomitu.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="../assets/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--公共样式-->
+
+    <style type="text/css">
+        .demo {
+            padding: 2em;
+            background: #fff;
+        }
+
+        .serviceBox {
+            border: 1px solid #ededed;
+            padding: 15px 15px 15px 15px;
+            position: relative;
+            transition: all 0.5s ease 0s;
+        }
+
+            .serviceBox:hover {
+                border-color: #41d7f7;
+            }
+
+            .serviceBox:before,
+            .serviceBox:after {
+                content: "";
+                display: block;
+                width: 50px;
+                height: 5px;
+                background: #41d7f7;
+                position: absolute;
+                left: 0;
+                opacity: 0;
+                transition: all 0.5s ease 0s;
+            }
+
+            .serviceBox:before {
+                top: -3px;
+            }
+
+            .serviceBox:after {
+                bottom: -3px;
+            }
+
+            .serviceBox:hover:before,
+            .serviceBox:hover:after {
+                left: 40px;
+                opacity: 1;
+            }
+
+            .serviceBox .service-icon {
+                display: inline-block;
+                position: absolute;
+                top: 33%;
+                left: 23px;
+                font-size: 45px;
+                color: #41d7f7;
+                opacity: 0.3;
+                transition: all 0.5s ease-in 0s;
+            }
+
+            .serviceBox:hover .service-icon {
+                opacity: 1;
+            }
+
+            .serviceBox .title {
+                font-size: 15px;
+                font-weight: 700;
+                color: #41d7f7;
+                text-align: center;
+            }
+
+            .serviceBox .distance {
+                font-size: 15px;
+                font-weight: 700;
+                color: olive;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .serviceBox .description {
+                font-size: 13px;
+                color: #666;
+                line-height: 20px;
+                text-align: center;
+                text-decoration: underline;
+            }
+
+        @media only screen and (max-width: 990px) {
+            .serviceBox {
+                margin-bottom: 30px;
+            }
+        }
+
+
+
+        /*加载进度条*/
+        .loader--audioWave {
+            width: 3em;
+            height: 2em;
+            background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+            background-repeat: no-repeat;
+            background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+            animation: audioWave 1.5s linear infinite;
+        }
+
+        @keyframes audioWave {
+            25% {
+                background: linear-gradient(#3498db, #3498db) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+                background-repeat: no-repeat;
+                background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+            }
+
+            37.5% {
+                background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#3498db, #3498db) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+                background-repeat: no-repeat;
+                background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+            }
+
+            50% {
+                background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#3498db, #3498db) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+                background-repeat: no-repeat;
+                background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
+            }
+
+            62.5% {
+                background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#3498db, #3498db) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+                background-repeat: no-repeat;
+                background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
+            }
+
+            75% {
+                background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#3498db, #3498db) 2.5em 50%;
+                background-repeat: no-repeat;
+                background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="demo">
+        <div class="container">
+            <div class="row" id="rows">
+
+                <!--<div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                        <div class="service-Content">
+
+                            <h3 class="title">
+                                2020年2月12日
+                            </h3>
+                            <p class="description">
+                             <a href="index.html"></a>
+                            </p>
+                            <audio controls autoplay="autoplay">
+                                <source src="assets/mcaudios/mc202002121.MP3" type="audio/mpeg" codecs="aac" />
+                                您的浏览器不支持音视频，建议下载
+                                <a href="assets/mcaudios/mc202002121.mp3">手动下载</a>
+                            </audio>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+    <script src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="../assets/js/jquery.min.js" charset="utf-8"></script>-->
+    <script>
+        var videos =
+            [
+                {
+                    "title": "A1_1-02 信仰的根基-圣经是神话语,三位一体的神",
+                    "url": "https://github.com/GoodHarvest/ISOM_S1/releases/download/S1/C1.mp4",
+                }
+            ];
+
+        for (var i = 0; i < videos.length; i++) {
+            var video = videos[i];
+            var html = '<div class="col-md-12 col-sm-12"><div class="serviceBox"><div class="service-Content"><h3 class="title">' + video.title + '</h3><p class="description"><a  href=' + video.url + '>点击下载</a></p><p style="text-align:center"><video width="240" height="180" controls defaultPlaybackRate="3" ><source src="' + video.url + '" type="video/mp4"/> <object data="' + video.url + '" width="320" height="240"> </object></video></p></div></div></div>';
+            $("#rows").append(html);
+        }
+
+        var audios = document.getElementsByTagName("audio");
+        // 暂停函数
+        function pauseAll() {
+            var self = this;
+            [].forEach.call(audios, function (i) {
+                // 将audios中其他的audio全部暂停
+                i !== self && i.pause();
+            })
+        }
+        // 给play事件绑定暂停函数
+        [].forEach.call(audios, function (i) {
+            i.addEventListener("play", pauseAll.bind(i));
+        });
+
+        $(window).resize(function () {
+            $("#load").css({
+                display: "",
+                position: "absolute",
+                left: ($(window).width() - $("#load").outerWidth()) / 2,
+                top: ($(window).height() - $("#load").outerHeight()) / 2,
+            });
+        });
+    </script>
+
+</body>
+
+</html>
